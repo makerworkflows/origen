@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origen — Genealogy, Document Preservation & Citizenship by Descent</title>
+<meta name="description" content="Professional genealogy research, digital document preservation, citizenship by descent applications, and apostille services. Uncover your roots. Claim your heritage.">
+<meta property="og:title" content="Origen — Uncover Your Roots. Claim Your Heritage.">
+<meta property="og:description" content="Genealogy research, digital document preservation, citizenship by descent, and apostille services.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:        #1C1714;
+  --parchment:  #FAF6F0;
+  --warm:       #F2EAD9;
+  --sepia:      #8B6F47;
+  --sepia-dk:   #5C4A2F;
+  --sepia-lt:   #B8976A;
+  --navy:       #1A2639;
+  --navy-lt:    #2C3E56;
+  --gold:       #C9A84C;
+  --gold-lt:    #E0C97A;
+  --rust:       #A0522D;
+  --cream:      #FFFCF5;
+  --white:      #FFFFFF;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --max-w: 1100px;
+  --radius: 3px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--parchment);color:var(--ink);font-family:var(--font-body);line-height:1.7;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+/* GRAIN TEXTURE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* NAV */
+.topbar{background:var(--navy);color:rgba(255,255,255,0.5);font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.1em;text-align:right;padding:0.4rem 2rem;}
+.topbar a{color:var(--gold-lt);margin-left:1.5rem;transition:color 0.2s;}
+.topbar a:hover{color:var(--white);}
+nav{background:var(--cream);border-bottom:1px solid rgba(139,111,71,0.15);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;}
+.nav-brand{display:flex;align-items:baseline;gap:0.5rem;}
+.nav-brand-name{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--navy);letter-spacing:0.02em;}
+.nav-brand-tag{font-family:var(--font-body);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sepia);font-weight:600;}
+.nav-links{display:flex;gap:2rem;list-style:none;font-family:var(--font-body);font-size:0.78rem;letter-spacing:0.06em;font-weight:500;}
+.nav-links a{color:var(--sepia-dk);transition:color 0.2s;}
+.nav-links a:hover{color:var(--navy);}
+.nav-cta{background:var(--navy);color:var(--white);padding:0.55rem 1.25rem;border-radius:var(--radius);font-weight:600;transition:all 0.2s;}
+.nav-cta:hover{background:var(--navy-lt);}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;}
+.nav-ham span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;}
+
+/* HERO */
+.hero{min-height:88vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,0.08) 0%,transparent 60%);}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold) 0%,var(--sepia) 50%,var(--gold) 100%);}
+.hero-content{position:relative;z-index:2;max-width:var(--max-w);margin:0 auto;padding:5rem 2rem;width:100%;text-align:center;}
+.hero-eyebrow{font-family:var(--font-body);font-size:0.7rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.hero-headline{font-family:var(--font-display);font-size:clamp(3rem,6vw,5.5rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-0.01em;margin-bottom:0.5rem;}
+.hero-headline em{color:var(--gold);font-style:italic;}
+.hero-sub{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.4rem);color:rgba(255,255,255,0.55);margin:1.5rem auto 2.5rem;max-width:600px;font-style:italic;font-weight:400;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--navy);font-family:var(--font-body);font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.25rem;border-radius:var(--radius);border:none;cursor:pointer;transition:all 0.2s;display:inline-block;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 4px 20px rgba(201,168,76,0.35);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.8);font-family:var(--font-body);font-weight:500;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.25rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.25);cursor:pointer;transition:all 0.2s;display:inline-block;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05);}
+.hero-countries{margin-top:3.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.hero-country{display:flex;align-items:center;gap:0.5rem;font-family:var(--font-body);font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;}
+.hero-country img{width:22px;height:16px;border-radius:2px;opacity:0.6;}
+
+/* SECTIONS */
+section{padding:5.5rem 2rem;}
+.section-inner{max-width:var(--max-w);margin:0 auto;}
+.section-label{font-family:var(--font-body);font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sepia);margin-bottom:0.75rem;font-weight:600;}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:0.75rem;}
+.section-title em{font-style:italic;color:var(--sepia);}
+.section-desc{font-family:var(--font-body);font-size:0.95rem;color:var(--sepia-dk);max-width:560px;line-height:1.8;}
+
+/* SERVICES */
+.services{background:var(--cream);}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.service-card{background:var(--white);border:1px solid rgba(139,111,71,0.12);border-radius:var(--radius);padding:2.25rem 1.75rem;transition:all 0.25s;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;transform-origin:left;}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(28,23,20,0.08);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{font-size:2rem;margin-bottom:1.25rem;}
+.service-name{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;}
+.service-desc{font-family:var(--font-body);font-size:0.85rem;color:var(--sepia-dk);line-height:1.7;margin-bottom:1.25rem;}
+.service-features{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.service-features li{font-family:var(--font-body);font-size:0.78rem;color:var(--sepia);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
+.service-features li::before{content:'—';color:var(--gold);font-weight:700;flex-shrink:0;}
+
+/* WHY */
+.why{background:var(--parchment);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+.why-card{text-align:center;padding:2rem 1.5rem;}
+.why-num{font-family:var(--font-display);font-size:3rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:0.75rem;}
+.why-card h3{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;}
+.why-card p{font-family:var(--font-body);font-size:0.85rem;color:var(--sepia-dk);line-height:1.7;}
+
+/* CBD COUNTRIES */
+.countries{background:var(--navy);color:var(--white);}
+.countries .section-label{color:var(--gold);}
+.countries .section-title{color:var(--white);}
+.countries .section-title em{color:var(--gold);}
+.countries .section-desc{color:rgba(255,255,255,0.55);}
+.countries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem;}
+.country-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:1.5rem;text-align:center;transition:all 0.25s;}
+.country-card:hover{background:rgba(255,255,255,0.08);border-color:var(--gold);transform:translateY(-3px);}
+.country-flag{font-size:2.5rem;margin-bottom:0.75rem;}
+.country-name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;}
+.country-path{font-family:var(--font-body);font-size:0.72rem;color:var(--gold-lt);letter-spacing:0.06em;}
+
+/* PROCESS */
+.process{background:var(--warm);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.step{text-align:center;padding:1.5rem 1rem;position:relative;}
+.step-num{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:var(--gold);opacity:0.3;line-height:1;margin-bottom:0.5rem;}
+.step h3{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;}
+.step p{font-family:var(--font-body);font-size:0.82rem;color:var(--sepia-dk);line-height:1.65;}
+
+/* CONTACT */
+.contact{background:var(--cream);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:start;}
+.contact-info h3{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:1rem;}
+.contact-info p{font-family:var(--font-body);font-size:0.92rem;color:var(--sepia-dk);line-height:1.8;margin-bottom:1.5rem;}
+.contact-detail{display:flex;align-items:center;gap:0.75rem;font-family:var(--font-body);font-size:0.88rem;color:var(--sepia-dk);margin-bottom:0.75rem;}
+.contact-detail span:first-child{color:var(--gold);font-size:1.1rem;}
+.contact-form{background:var(--white);border:1px solid rgba(139,111,71,0.12);border-radius:var(--radius);padding:2.5rem;}
+.form-group{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem;}
+.form-group label{font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sepia);}
+.form-group input,.form-group select,.form-group textarea{background:var(--parchment);border:1px solid rgba(139,111,71,0.15);border-radius:var(--radius);padding:0.75rem 1rem;font-family:var(--font-body);font-size:0.88rem;color:var(--ink);width:100%;outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group textarea{min-height:100px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-submit{width:100%;background:var(--navy);color:var(--white);font-family:var(--font-body);font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;border:none;border-radius:var(--radius);cursor:pointer;transition:all 0.2s;margin-top:0.5rem;}
+.form-submit:hover{background:var(--navy-lt);transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2rem;}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;}
+.footer-brand{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:0.5rem;}
+.footer-tagline{font-family:var(--font-display);font-size:0.95rem;font-style:italic;color:rgba(255,255,255,0.35);margin-bottom:1rem;}
+.footer-col h4{font-family:var(--font-body);font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.footer-links a{font-family:var(--font-body);font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{max-width:var(--max-w);margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-family:var(--font-body);font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-disclaimer{font-size:0.68rem;max-width:600px;line-height:1.6;color:rgba(255,255,255,0.2);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:1fr;}
+  .countries-grid{grid-template-columns:repeat(2,1fr);}
+  .process-steps{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+  .nav-ham{display:flex;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  section{padding:3.5rem 1.25rem;}
+  .services-grid{grid-template-columns:1fr;}
+  .countries-grid{grid-template-columns:1fr;}
+  .process-steps{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;gap:2rem;}
+  .hero-headline{font-size:2.8rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-gold,.btn-ghost{width:100%;text-align:center;}
+  .hero-countries{gap:1rem;}
+  nav{padding:0 1rem;height:60px;}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{animation:fadeUp 0.6s ease both 0.1s;}
+.hero-headline{animation:fadeUp 0.6s ease both 0.2s;}
+.hero-sub{animation:fadeUp 0.6s ease both 0.35s;}
+.hero-btns{animation:fadeUp 0.6s ease both 0.45s;}
+.hero-countries{animation:fadeUp 0.6s ease both 0.55s;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="mailto:hello@myorigen.com">hello@myorigen.com</a>
+  <a href="tel:+15126359629">(512) 635-9629</a>
+</div>
+
+<nav>
+  <div class="nav-brand">
+    <span class="nav-brand-name">Origen</span>
+    <span class="nav-brand-tag">Genealogy &amp; Heritage</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#countries">Citizenship</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+  </ul>
+  <button class="nav-ham" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Genealogy &middot; Document Preservation &middot; Citizenship by Descent</div>
+    <h1 class="hero-headline">Uncover Your Roots.<br><em>Claim Your Heritage.</em></h1>
+    <p class="hero-sub">Professional genealogy research, digital document preservation, citizenship by descent applications, and apostille services — built on 16 years of regulated documentation expertise.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Free Consultation</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
+    </div>
+    <div class="hero-countries">
+      <div class="hero-country"><img src="https://flagcdn.com/w40/it.png" alt="Italy">Italy</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/es.png" alt="Spain">Spain</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/ie.png" alt="Ireland">Ireland</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal">Portugal</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/pl.png" alt="Poland">Poland</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/de.png" alt="Germany">Germany</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/lt.png" alt="Lithuania">Lithuania</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Four Pillars of <em>Heritage Recovery</em></h2>
+    <p class="section-desc">From uncovering your lineage to securing your second passport — we handle the research, the records, and the paperwork so you can focus on what it means.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#x1F4DC;</div>
+        <h3 class="service-name">Full Genealogy</h3>
+        <p class="service-desc">Deep-line ancestry research across civil, church, immigration, and military records. We trace your family back as far as the records allow.</p>
+        <ul class="service-features">
+          <li>Single-line research (paternal or maternal)</li>
+          <li>Dual-line comprehensive packages</li>
+          <li>International record retrieval</li>
+          <li>Family tree documentation and narrative report</li>
+          <li>DNA analysis integration</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x1F4F7;</div>
+        <h3 class="service-name">Digital Document Preservation</h3>
+        <p class="service-desc">High-resolution scanning and archival of family photographs, vital records, letters, and heirlooms. Preserving what time cannot.</p>
+        <ul class="service-features">
+          <li>Standard and fragile document scanning</li>
+          <li>Photo restoration and enhancement</li>
+          <li>Cloud-based family archive</li>
+          <li>Organized digital cataloging</li>
+          <li>Family archive sessions (up to 100 items)</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x1F6C2;</div>
+        <h3 class="service-name">Citizenship by Descent</h3>
+        <p class="service-desc">Eligibility assessment, lineage documentation, and full application packages for citizenship by descent through European ancestry.</p>
+        <ul class="service-features">
+          <li>Eligibility assessment and pathway mapping</li>
+          <li>Vital record collection (birth, marriage, death, naturalization)</li>
+          <li>Translation and legalization</li>
+          <li>Full lineage documentation packages</li>
+          <li>Attorney referrals for consulate filing</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x1F4CE;</div>
+        <h3 class="service-name">Apostille Services</h3>
+        <p class="service-desc">Document authentication and apostille processing for international use. Required for citizenship applications, foreign legal proceedings, and overseas transactions.</p>
+        <ul class="service-features">
+          <li>Federal and state apostille processing</li>
+          <li>Document authentication for all 50 states</li>
+          <li>Embassy and consulate legalization</li>
+          <li>Certified translation coordination</li>
+          <li>Rush processing available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ORIGEN -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-label">Why Origen</div>
+    <h2 class="section-title">Built Different. <em>By Design.</em></h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">16</div>
+        <h3>Years in Regulated Documentation</h3>
+        <p>From GMP manufacturing to ISO-certified quality systems — we bring the same rigor to genealogy that the FDA demands from pharmaceutical production.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">5</div>
+        <h3>Languages Spoken</h3>
+        <p>English, Spanish, French, Portuguese, and German. We read the records in the language they were written — no third-party translation errors.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">21</div>
+        <h3>Countries Visited</h3>
+        <p>From the archives of Lisbon to the registries of Rome. We understand the systems because we have navigated them in person, not just online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CBD COUNTRIES -->
+<section class="countries" id="countries">
+  <div class="section-inner">
+    <div class="section-label">Citizenship by Descent</div>
+    <h2 class="section-title">Your Ancestry. <em>Your Passport.</em></h2>
+    <p class="section-desc">These are the most common citizenship-by-descent pathways. If your ancestors came from any of these countries, you may already qualify.</p>
+    <div class="countries-grid">
+      <div class="country-card">
+        <div class="country-flag">&#x1F1EE;&#x1F1F9;</div>
+        <div class="country-name">Italy</div>
+        <div class="country-path">Jure Sanguinis &middot; No generational limit</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1EA;&#x1F1F8;</div>
+        <div class="country-name">Spain</div>
+        <div class="country-path">Ley de Memoria Democratica</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1EE;&#x1F1EA;</div>
+        <div class="country-name">Ireland</div>
+        <div class="country-path">Foreign Births Register</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1F5;&#x1F1F9;</div>
+        <div class="country-name">Portugal</div>
+        <div class="country-path">Sephardic &middot; Grandchildren</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1F5;&#x1F1F1;</div>
+        <div class="country-name">Poland</div>
+        <div class="country-path">Confirmation of Citizenship</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1E9;&#x1F1EA;</div>
+        <div class="country-name">Germany</div>
+        <div class="country-path">Article 116 &middot; Restoration</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1F1;&#x1F1F9;</div>
+        <div class="country-name">Lithuania</div>
+        <div class="country-path">Ancestry Restoration</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">&#x1F1EC;&#x1F1E7;</div>
+        <div class="country-name">United Kingdom</div>
+        <div class="country-path">Registration by Descent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From Question to <em>Confirmation</em></h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Discovery Call</h3>
+        <p>We learn what you know about your ancestry, identify the most promising pathways, and outline a clear scope of work. Free, no obligation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Research &amp; Recovery</h3>
+        <p>We locate, retrieve, and verify the vital records that build your lineage — birth certificates, marriage records, immigration documents, naturalization files.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Documentation</h3>
+        <p>Records are organized, translated where needed, apostilled for international use, and compiled into a complete application-ready package.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Submission</h3>
+        <p>We hand you a finished package ready for consulate submission. For citizenship applications, we coordinate with qualified immigration attorneys for filing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Free <em>Consultation</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Every family has a story waiting to be uncovered.</h3>
+        <p>Whether you are tracing your roots for the first time, preserving a century of family photographs, or pursuing a second citizenship through your ancestry — we are here to guide you through every step.</p>
+        <p>Tell us what you know. We will tell you what is possible.</p>
+        <div class="contact-detail"><span>&#x2709;</span> hello@myorigen.com</div>
+        <div class="contact-detail"><span>&#x260E;</span> (512) 635-9629</div>
+        <div class="contact-detail"><span>&#x1F4CD;</span> Mission, TX &middot; Serving clients worldwide</div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();document.getElementById('modal').classList.add('open');">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" required></div>
+          <div class="form-group"><label>Last Name</label><input type="text" required></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" required></div>
+        <div class="form-group"><label>Phone</label><input type="tel"></div>
+        <div class="form-group">
+          <label>I am interested in</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Full Genealogy Research</option>
+            <option>Digital Document Preservation</option>
+            <option>Citizenship by Descent</option>
+            <option>Apostille Services</option>
+            <option>Multiple Services / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Tell us about your ancestry or project</label><textarea placeholder="What do you know about your family history? What countries? What are you hoping to accomplish?"></textarea></div>
+        <button type="submit" class="form-submit">Request Free Consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Origen</div>
+      <div class="footer-tagline">Uncover your roots. Claim your heritage.</div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:340px;">Professional genealogy research and heritage documentation services. Based in South Texas, serving clients worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Full Genealogy</a></li>
+        <li><a href="#services">Document Preservation</a></li>
+        <li><a href="#services">Citizenship by Descent</a></li>
+        <li><a href="#services">Apostille Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul class="footer-links">
+        <li><a href="#contact">Free Consultation</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#countries">CBD Pathways</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Origen. All rights reserved.</span>
+    <div class="footer-disclaimer">Origen provides genealogical research and documentation services only. We are not a law firm and do not provide legal advice. For citizenship application filing, we coordinate with qualified immigration attorneys.</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="this.classList.remove('open')">
+  <div style="background:var(--cream);border-radius:4px;padding:3rem;max-width:420px;text-align:center;margin:1rem;border-top:4px solid var(--gold);" onclick="event.stopPropagation()">
+    <div style="font-size:3rem;margin-bottom:1rem;">&#x1F4DC;</div>
+    <h3 style="font-family:var(--font-display);font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;">Thank You</h3>
+    <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--sepia-dk);font-style:italic;margin-bottom:2rem;">Your consultation request has been received. We will be in touch within 24 hours to discuss your ancestry and next steps.</p>
+    <button onclick="document.getElementById('modal').classList.remove('open')" style="background:var(--navy);color:var(--white);border:none;padding:0.8rem 2rem;font-family:var(--font-body);font-weight:600;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;">Close</button>
+  </div>
+</div>
+
+</body>
+</html>
