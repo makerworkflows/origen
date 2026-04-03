@@ -43,14 +43,23 @@ a{color:inherit;text-decoration:none;}
 /* GRAIN TEXTURE */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
 
+/* LANG TOGGLE */
+.lang-toggle{display:flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:0.2rem;cursor:pointer;margin-left:1.5rem;}
+.lang-toggle span{font-family:var(--font-body);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;padding:0.25rem 0.6rem;border-radius:16px;transition:all 0.25s;color:rgba(255,255,255,0.45);user-select:none;}
+.lang-toggle span.active{background:var(--gold);color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,0.15);}
+.nav-lang-toggle{display:flex;align-items:center;gap:0.4rem;background:rgba(139,111,71,0.08);border:1px solid rgba(139,111,71,0.15);border-radius:20px;padding:0.2rem;cursor:pointer;margin-left:1rem;}
+.nav-lang-toggle span{font-family:var(--font-body);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;padding:0.25rem 0.6rem;border-radius:16px;transition:all 0.25s;color:var(--sepia);user-select:none;}
+.nav-lang-toggle span.active{background:var(--navy);color:var(--white);box-shadow:0 1px 4px rgba(0,0,0,0.1);}
+
 /* NAV */
-.topbar{background:var(--navy);color:rgba(255,255,255,0.5);font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.1em;text-align:right;padding:0.4rem 2rem;}
+.topbar{background:var(--navy);color:rgba(255,255,255,0.5);font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.1em;text-align:right;padding:0.4rem 2rem;display:flex;justify-content:flex-end;align-items:center;}
 .topbar a{color:var(--gold-lt);margin-left:1.5rem;transition:color 0.2s;}
 .topbar a:hover{color:var(--white);}
 nav{background:var(--cream);border-bottom:1px solid rgba(139,111,71,0.15);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;}
 .nav-brand{display:flex;align-items:baseline;gap:0.5rem;}
 .nav-brand-name{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--navy);letter-spacing:0.02em;}
 .nav-brand-tag{font-family:var(--font-body);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sepia);font-weight:600;}
+.nav-right{display:flex;align-items:center;gap:0;}
 .nav-links{display:flex;gap:2rem;list-style:none;font-family:var(--font-body);font-size:0.78rem;letter-spacing:0.06em;font-weight:500;}
 .nav-links a{color:var(--sepia-dk);transition:color 0.2s;}
 .nav-links a:hover{color:var(--navy);}
@@ -168,6 +177,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
   .nav-links{display:none;}
   .nav-ham{display:flex;}
   .form-row{grid-template-columns:1fr;}
+  .nav-lang-toggle{margin-left:0;margin-right:0.75rem;}
 }
 @media(max-width:600px){
   section{padding:3.5rem 1.25rem;}
@@ -200,42 +210,52 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <div class="topbar">
   <a href="mailto:hello@myorigen.com">hello@myorigen.com</a>
   <a href="tel:+15126359629">(512) 635-9629</a>
+  <div class="lang-toggle" id="topbarLang" onclick="toggleLang()">
+    <span class="active" id="topEn">EN</span>
+    <span id="topEs">ES</span>
+  </div>
 </div>
 
 <nav>
   <div class="nav-brand">
     <span class="nav-brand-name">Origen</span>
-    <span class="nav-brand-tag">Genealogy &amp; Heritage</span>
+    <span class="nav-brand-tag" data-es="Genealogia y Herencia">Genealogy &amp; Heritage</span>
   </div>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#countries">Citizenship</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
-  </ul>
-  <button class="nav-ham" onclick="document.querySelector('.nav-links').classList.toggle('show')">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services" data-es="Servicios">Services</a></li>
+      <li><a href="#countries" data-es="Ciudadania">Citizenship</a></li>
+      <li><a href="#process" data-es="Proceso">Process</a></li>
+      <li><a href="#contact" class="nav-cta" data-es="Consulta Gratis">Free Consultation</a></li>
+    </ul>
+    <div class="nav-lang-toggle" onclick="toggleLang()">
+      <span class="active" id="navEn">EN</span>
+      <span id="navEs">ES</span>
+    </div>
+    <button class="nav-ham" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">Genealogy &middot; Document Preservation &middot; Citizenship by Descent</div>
-    <h1 class="hero-headline">Uncover Your Roots.<br><em>Claim Your Heritage.</em></h1>
-    <p class="hero-sub">Professional genealogy research, digital document preservation, citizenship by descent applications, and apostille services — built on 16 years of regulated documentation expertise.</p>
+    <div class="hero-eyebrow" data-es="Genealogia &middot; Preservacion Documental &middot; Ciudadania por Descendencia">Genealogy &middot; Document Preservation &middot; Citizenship by Descent</div>
+    <h1 class="hero-headline" data-es="Descubre Tus Raices.<br><em>Reclama Tu Herencia.</em>">Uncover Your Roots.<br><em>Claim Your Heritage.</em></h1>
+    <p class="hero-sub" data-es="Investigacion genealogica profesional, preservacion digital de documentos, solicitudes de ciudadania por descendencia y servicios de apostilla — respaldados por 16 anos de experiencia en documentacion regulada.">Professional genealogy research, digital document preservation, citizenship by descent applications, and apostille services — built on 16 years of regulated documentation expertise.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-gold">Free Consultation</a>
-      <a href="#services" class="btn-ghost">Explore Services</a>
+      <a href="#contact" class="btn-gold" data-es="Consulta Gratis">Free Consultation</a>
+      <a href="#services" class="btn-ghost" data-es="Explorar Servicios">Explore Services</a>
     </div>
     <div class="hero-countries">
-      <div class="hero-country"><img src="https://flagcdn.com/w40/it.png" alt="Italy">Italy</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/es.png" alt="Spain">Spain</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/ie.png" alt="Ireland">Ireland</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal">Portugal</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/pl.png" alt="Poland">Poland</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/de.png" alt="Germany">Germany</div>
-      <div class="hero-country"><img src="https://flagcdn.com/w40/lt.png" alt="Lithuania">Lithuania</div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/it.png" alt="Italy" data-es-alt="Italia"><span data-es="Italia">Italy</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/es.png" alt="Spain" data-es-alt="Espana"><span data-es="Espana">Spain</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/ie.png" alt="Ireland" data-es-alt="Irlanda"><span data-es="Irlanda">Ireland</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal"><span>Portugal</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/pl.png" alt="Poland" data-es-alt="Polonia"><span data-es="Polonia">Poland</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/de.png" alt="Germany" data-es-alt="Alemania"><span data-es="Alemania">Germany</span></div>
+      <div class="hero-country"><img src="https://flagcdn.com/w40/lt.png" alt="Lithuania" data-es-alt="Lituania"><span data-es="Lituania">Lithuania</span></div>
     </div>
   </div>
 </section>
@@ -243,56 +263,56 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-inner">
-    <div class="section-label">What We Do</div>
-    <h2 class="section-title">Four Pillars of <em>Heritage Recovery</em></h2>
-    <p class="section-desc">From uncovering your lineage to securing your second passport — we handle the research, the records, and the paperwork so you can focus on what it means.</p>
+    <div class="section-label" data-es="Lo Que Hacemos">What We Do</div>
+    <h2 class="section-title" data-es="Cuatro Pilares de la <em>Recuperacion de Herencia</em>">Four Pillars of <em>Heritage Recovery</em></h2>
+    <p class="section-desc" data-es="Desde descubrir tu linaje hasta asegurar tu segundo pasaporte — nosotros manejamos la investigacion, los registros y el papeleo para que tu te enfoques en lo que significa.">From uncovering your lineage to securing your second passport — we handle the research, the records, and the paperwork so you can focus on what it means.</p>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">&#x1F4DC;</div>
-        <h3 class="service-name">Full Genealogy</h3>
-        <p class="service-desc">Deep-line ancestry research across civil, church, immigration, and military records. We trace your family back as far as the records allow.</p>
+        <h3 class="service-name" data-es="Genealogia Completa">Full Genealogy</h3>
+        <p class="service-desc" data-es="Investigacion de ascendencia profunda a traves de registros civiles, eclesiasticos, de inmigracion y militares. Rastreamos tu familia hasta donde los registros lo permitan.">Deep-line ancestry research across civil, church, immigration, and military records. We trace your family back as far as the records allow.</p>
         <ul class="service-features">
-          <li>Single-line research (paternal or maternal)</li>
-          <li>Dual-line comprehensive packages</li>
-          <li>International record retrieval</li>
-          <li>Family tree documentation and narrative report</li>
-          <li>DNA analysis integration</li>
+          <li data-es="Investigacion de linea unica (paterna o materna)">Single-line research (paternal or maternal)</li>
+          <li data-es="Paquetes completos de doble linea">Dual-line comprehensive packages</li>
+          <li data-es="Recuperacion de registros internacionales">International record retrieval</li>
+          <li data-es="Documentacion de arbol genealogico e informe narrativo">Family tree documentation and narrative report</li>
+          <li data-es="Integracion de analisis de ADN">DNA analysis integration</li>
         </ul>
       </div>
       <div class="service-card">
         <div class="service-icon">&#x1F4F7;</div>
-        <h3 class="service-name">Digital Document Preservation</h3>
-        <p class="service-desc">High-resolution scanning and archival of family photographs, vital records, letters, and heirlooms. Preserving what time cannot.</p>
+        <h3 class="service-name" data-es="Preservacion Digital de Documentos">Digital Document Preservation</h3>
+        <p class="service-desc" data-es="Escaneo de alta resolucion y archivo de fotografias familiares, actas, cartas y reliquias. Preservando lo que el tiempo no puede.">High-resolution scanning and archival of family photographs, vital records, letters, and heirlooms. Preserving what time cannot.</p>
         <ul class="service-features">
-          <li>Standard and fragile document scanning</li>
-          <li>Photo restoration and enhancement</li>
-          <li>Cloud-based family archive</li>
-          <li>Organized digital cataloging</li>
-          <li>Family archive sessions (up to 100 items)</li>
+          <li data-es="Escaneo de documentos estandar y fragiles">Standard and fragile document scanning</li>
+          <li data-es="Restauracion y mejora de fotografias">Photo restoration and enhancement</li>
+          <li data-es="Archivo familiar en la nube">Cloud-based family archive</li>
+          <li data-es="Catalogacion digital organizada">Organized digital cataloging</li>
+          <li data-es="Sesiones de archivo familiar (hasta 100 piezas)">Family archive sessions (up to 100 items)</li>
         </ul>
       </div>
       <div class="service-card">
         <div class="service-icon">&#x1F6C2;</div>
-        <h3 class="service-name">Citizenship by Descent</h3>
-        <p class="service-desc">Eligibility assessment, lineage documentation, and full application packages for citizenship by descent through European ancestry.</p>
+        <h3 class="service-name" data-es="Ciudadania por Descendencia">Citizenship by Descent</h3>
+        <p class="service-desc" data-es="Evaluacion de elegibilidad, documentacion de linaje y paquetes completos de solicitud para ciudadania por descendencia a traves de ancestros europeos.">Eligibility assessment, lineage documentation, and full application packages for citizenship by descent through European ancestry.</p>
         <ul class="service-features">
-          <li>Eligibility assessment and pathway mapping</li>
-          <li>Vital record collection (birth, marriage, death, naturalization)</li>
-          <li>Translation and legalization</li>
-          <li>Full lineage documentation packages</li>
-          <li>Attorney referrals for consulate filing</li>
+          <li data-es="Evaluacion de elegibilidad y mapeo de ruta">Eligibility assessment and pathway mapping</li>
+          <li data-es="Recopilacion de actas (nacimiento, matrimonio, defuncion, naturalizacion)">Vital record collection (birth, marriage, death, naturalization)</li>
+          <li data-es="Traduccion y legalizacion">Translation and legalization</li>
+          <li data-es="Paquetes completos de documentacion de linaje">Full lineage documentation packages</li>
+          <li data-es="Referencia a abogados para tramite consular">Attorney referrals for consulate filing</li>
         </ul>
       </div>
       <div class="service-card">
         <div class="service-icon">&#x1F4CE;</div>
-        <h3 class="service-name">Apostille Services</h3>
-        <p class="service-desc">Document authentication and apostille processing for international use. Required for citizenship applications, foreign legal proceedings, and overseas transactions.</p>
+        <h3 class="service-name" data-es="Servicios de Apostilla">Apostille Services</h3>
+        <p class="service-desc" data-es="Autenticacion de documentos y tramite de apostilla para uso internacional. Requerido para solicitudes de ciudadania, procedimientos legales en el extranjero y transacciones internacionales.">Document authentication and apostille processing for international use. Required for citizenship applications, foreign legal proceedings, and overseas transactions.</p>
         <ul class="service-features">
-          <li>Federal and state apostille processing</li>
-          <li>Document authentication for all 50 states</li>
-          <li>Embassy and consulate legalization</li>
-          <li>Certified translation coordination</li>
-          <li>Rush processing available</li>
+          <li data-es="Tramite de apostilla federal y estatal">Federal and state apostille processing</li>
+          <li data-es="Autenticacion de documentos para los 50 estados">Document authentication for all 50 states</li>
+          <li data-es="Legalizacion ante embajadas y consulados">Embassy and consulate legalization</li>
+          <li data-es="Coordinacion de traduccion certificada">Certified translation coordination</li>
+          <li data-es="Procesamiento urgente disponible">Rush processing available</li>
         </ul>
       </div>
     </div>
@@ -302,23 +322,23 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <!-- WHY ORIGEN -->
 <section class="why" id="why">
   <div class="section-inner">
-    <div class="section-label">Why Origen</div>
-    <h2 class="section-title">Built Different. <em>By Design.</em></h2>
+    <div class="section-label" data-es="Por Que Origen">Why Origen</div>
+    <h2 class="section-title" data-es="Diferente. <em>Por Diseno.</em>">Built Different. <em>By Design.</em></h2>
     <div class="why-grid">
       <div class="why-card">
         <div class="why-num">16</div>
-        <h3>Years in Regulated Documentation</h3>
-        <p>From GMP manufacturing to ISO-certified quality systems — we bring the same rigor to genealogy that the FDA demands from pharmaceutical production.</p>
+        <h3 data-es="Anos en Documentacion Regulada">Years in Regulated Documentation</h3>
+        <p data-es="Desde manufactura GMP hasta sistemas de calidad certificados ISO — aplicamos el mismo rigor a la genealogia que la FDA exige en la produccion farmaceutica.">From GMP manufacturing to ISO-certified quality systems — we bring the same rigor to genealogy that the FDA demands from pharmaceutical production.</p>
       </div>
       <div class="why-card">
         <div class="why-num">5</div>
-        <h3>Languages Spoken</h3>
-        <p>English, Spanish, French, Portuguese, and German. We read the records in the language they were written — no third-party translation errors.</p>
+        <h3 data-es="Idiomas Hablados">Languages Spoken</h3>
+        <p data-es="Ingles, espanol, frances, portugues y aleman. Leemos los registros en el idioma en que fueron escritos — sin errores de traduccion de terceros.">English, Spanish, French, Portuguese, and German. We read the records in the language they were written — no third-party translation errors.</p>
       </div>
       <div class="why-card">
         <div class="why-num">21</div>
-        <h3>Countries Visited</h3>
-        <p>From the archives of Lisbon to the registries of Rome. We understand the systems because we have navigated them in person, not just online.</p>
+        <h3 data-es="Paises Visitados">Countries Visited</h3>
+        <p data-es="Desde los archivos de Lisboa hasta los registros de Roma. Entendemos los sistemas porque los hemos navegado en persona, no solo en linea.">From the archives of Lisbon to the registries of Rome. We understand the systems because we have navigated them in person, not just online.</p>
       </div>
     </div>
   </div>
@@ -327,49 +347,49 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <!-- CBD COUNTRIES -->
 <section class="countries" id="countries">
   <div class="section-inner">
-    <div class="section-label">Citizenship by Descent</div>
-    <h2 class="section-title">Your Ancestry. <em>Your Passport.</em></h2>
-    <p class="section-desc">These are the most common citizenship-by-descent pathways. If your ancestors came from any of these countries, you may already qualify.</p>
+    <div class="section-label" data-es="Ciudadania por Descendencia">Citizenship by Descent</div>
+    <h2 class="section-title" data-es="Tu Ancestria. <em>Tu Pasaporte.</em>">Your Ancestry. <em>Your Passport.</em></h2>
+    <p class="section-desc" data-es="Estas son las rutas mas comunes de ciudadania por descendencia. Si tus ancestros vinieron de alguno de estos paises, es posible que ya califiques.">These are the most common citizenship-by-descent pathways. If your ancestors came from any of these countries, you may already qualify.</p>
     <div class="countries-grid">
       <div class="country-card">
         <div class="country-flag">&#x1F1EE;&#x1F1F9;</div>
-        <div class="country-name">Italy</div>
-        <div class="country-path">Jure Sanguinis &middot; No generational limit</div>
+        <div class="country-name" data-es="Italia">Italy</div>
+        <div class="country-path" data-es="Jure Sanguinis &middot; Sin limite generacional">Jure Sanguinis &middot; No generational limit</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1EA;&#x1F1F8;</div>
-        <div class="country-name">Spain</div>
+        <div class="country-name" data-es="Espana">Spain</div>
         <div class="country-path">Ley de Memoria Democratica</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1EE;&#x1F1EA;</div>
-        <div class="country-name">Ireland</div>
-        <div class="country-path">Foreign Births Register</div>
+        <div class="country-name" data-es="Irlanda">Ireland</div>
+        <div class="country-path" data-es="Registro de Nacimientos en el Extranjero">Foreign Births Register</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1F5;&#x1F1F9;</div>
         <div class="country-name">Portugal</div>
-        <div class="country-path">Sephardic &middot; Grandchildren</div>
+        <div class="country-path" data-es="Sefardi &middot; Nietos">Sephardic &middot; Grandchildren</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1F5;&#x1F1F1;</div>
-        <div class="country-name">Poland</div>
-        <div class="country-path">Confirmation of Citizenship</div>
+        <div class="country-name" data-es="Polonia">Poland</div>
+        <div class="country-path" data-es="Confirmacion de Ciudadania">Confirmation of Citizenship</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1E9;&#x1F1EA;</div>
-        <div class="country-name">Germany</div>
-        <div class="country-path">Article 116 &middot; Restoration</div>
+        <div class="country-name" data-es="Alemania">Germany</div>
+        <div class="country-path" data-es="Articulo 116 &middot; Restauracion">Article 116 &middot; Restoration</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1F1;&#x1F1F9;</div>
-        <div class="country-name">Lithuania</div>
-        <div class="country-path">Ancestry Restoration</div>
+        <div class="country-name" data-es="Lituania">Lithuania</div>
+        <div class="country-path" data-es="Restauracion de Ancestria">Ancestry Restoration</div>
       </div>
       <div class="country-card">
         <div class="country-flag">&#x1F1EC;&#x1F1E7;</div>
-        <div class="country-name">United Kingdom</div>
-        <div class="country-path">Registration by Descent</div>
+        <div class="country-name" data-es="Reino Unido">United Kingdom</div>
+        <div class="country-path" data-es="Registro por Descendencia">Registration by Descent</div>
       </div>
     </div>
   </div>
@@ -378,28 +398,28 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <!-- PROCESS -->
 <section class="process" id="process">
   <div class="section-inner">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title">From Question to <em>Confirmation</em></h2>
+    <div class="section-label" data-es="Como Funciona">How It Works</div>
+    <h2 class="section-title" data-es="De la Pregunta a la <em>Confirmacion</em>">From Question to <em>Confirmation</em></h2>
     <div class="process-steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3>Discovery Call</h3>
-        <p>We learn what you know about your ancestry, identify the most promising pathways, and outline a clear scope of work. Free, no obligation.</p>
+        <h3 data-es="Llamada Inicial">Discovery Call</h3>
+        <p data-es="Conocemos lo que sabes sobre tu ascendencia, identificamos las rutas mas prometedoras y delineamos un alcance de trabajo claro. Gratis, sin compromiso.">We learn what you know about your ancestry, identify the most promising pathways, and outline a clear scope of work. Free, no obligation.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3>Research &amp; Recovery</h3>
-        <p>We locate, retrieve, and verify the vital records that build your lineage — birth certificates, marriage records, immigration documents, naturalization files.</p>
+        <h3 data-es="Investigacion y Recuperacion">Research &amp; Recovery</h3>
+        <p data-es="Localizamos, recuperamos y verificamos las actas que construyen tu linaje — actas de nacimiento, matrimonio, documentos de inmigracion, expedientes de naturalizacion.">We locate, retrieve, and verify the vital records that build your lineage — birth certificates, marriage records, immigration documents, naturalization files.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Documentation</h3>
-        <p>Records are organized, translated where needed, apostilled for international use, and compiled into a complete application-ready package.</p>
+        <h3 data-es="Documentacion">Documentation</h3>
+        <p data-es="Los registros se organizan, se traducen cuando es necesario, se apostillan para uso internacional y se compilan en un paquete completo listo para solicitud.">Records are organized, translated where needed, apostilled for international use, and compiled into a complete application-ready package.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h3>Submission</h3>
-        <p>We hand you a finished package ready for consulate submission. For citizenship applications, we coordinate with qualified immigration attorneys for filing.</p>
+        <h3 data-es="Entrega">Submission</h3>
+        <p data-es="Te entregamos un paquete terminado listo para presentar al consulado. Para solicitudes de ciudadania, coordinamos con abogados de inmigracion calificados para el tramite.">We hand you a finished package ready for consulate submission. For citizenship applications, we coordinate with qualified immigration attorneys for filing.</p>
       </div>
     </div>
   </div>
@@ -408,37 +428,37 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-inner">
-    <div class="section-label">Get Started</div>
-    <h2 class="section-title">Free <em>Consultation</em></h2>
+    <div class="section-label" data-es="Comenzar">Get Started</div>
+    <h2 class="section-title" data-es="<em>Consulta</em> Gratis">Free <em>Consultation</em></h2>
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>Every family has a story waiting to be uncovered.</h3>
-        <p>Whether you are tracing your roots for the first time, preserving a century of family photographs, or pursuing a second citizenship through your ancestry — we are here to guide you through every step.</p>
-        <p>Tell us what you know. We will tell you what is possible.</p>
+        <h3 data-es="Cada familia tiene una historia esperando ser descubierta.">Every family has a story waiting to be uncovered.</h3>
+        <p data-es="Ya sea que estes rastreando tus raices por primera vez, preservando un siglo de fotografias familiares, o buscando una segunda ciudadania a traves de tu ascendencia — estamos aqui para guiarte en cada paso.">Whether you are tracing your roots for the first time, preserving a century of family photographs, or pursuing a second citizenship through your ancestry — we are here to guide you through every step.</p>
+        <p data-es="Cuentanos lo que sabes. Nosotros te diremos lo que es posible.">Tell us what you know. We will tell you what is possible.</p>
         <div class="contact-detail"><span>&#x2709;</span> hello@myorigen.com</div>
         <div class="contact-detail"><span>&#x260E;</span> (512) 635-9629</div>
-        <div class="contact-detail"><span>&#x1F4CD;</span> Mission, TX &middot; Serving clients worldwide</div>
+        <div class="contact-detail"><span>&#x1F4CD;</span> <span data-es="Mission, TX &middot; Sirviendo clientes en todo el mundo">Mission, TX &middot; Serving clients worldwide</span></div>
       </div>
       <form class="contact-form" onsubmit="event.preventDefault();document.getElementById('modal').classList.add('open');">
         <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" required></div>
-          <div class="form-group"><label>Last Name</label><input type="text" required></div>
+          <div class="form-group"><label data-es="Nombre">First Name</label><input type="text" required></div>
+          <div class="form-group"><label data-es="Apellido">Last Name</label><input type="text" required></div>
         </div>
-        <div class="form-group"><label>Email</label><input type="email" required></div>
-        <div class="form-group"><label>Phone</label><input type="tel"></div>
+        <div class="form-group"><label data-es="Correo Electronico">Email</label><input type="email" required></div>
+        <div class="form-group"><label data-es="Telefono">Phone</label><input type="tel"></div>
         <div class="form-group">
-          <label>I am interested in</label>
-          <select>
-            <option value="">Select a service...</option>
-            <option>Full Genealogy Research</option>
-            <option>Digital Document Preservation</option>
-            <option>Citizenship by Descent</option>
-            <option>Apostille Services</option>
-            <option>Multiple Services / Not Sure</option>
+          <label data-es="Me Interesa">I am interested in</label>
+          <select id="serviceSelect">
+            <option value="" data-es="Selecciona un servicio...">Select a service...</option>
+            <option data-es="Investigacion Genealogica Completa">Full Genealogy Research</option>
+            <option data-es="Preservacion Digital de Documentos">Digital Document Preservation</option>
+            <option data-es="Ciudadania por Descendencia">Citizenship by Descent</option>
+            <option data-es="Servicios de Apostilla">Apostille Services</option>
+            <option data-es="Multiples Servicios / No Estoy Seguro">Multiple Services / Not Sure</option>
           </select>
         </div>
-        <div class="form-group"><label>Tell us about your ancestry or project</label><textarea placeholder="What do you know about your family history? What countries? What are you hoping to accomplish?"></textarea></div>
-        <button type="submit" class="form-submit">Request Free Consultation</button>
+        <div class="form-group"><label data-es="Cuentanos sobre tu ascendencia o proyecto">Tell us about your ancestry or project</label><textarea id="projectTextarea" placeholder="What do you know about your family history? What countries? What are you hoping to accomplish?" data-es-placeholder="Que sabes sobre la historia de tu familia? Que paises? Que esperas lograr?"></textarea></div>
+        <button type="submit" class="form-submit" data-es="Solicitar Consulta Gratis">Request Free Consultation</button>
       </form>
     </div>
   </div>
@@ -449,30 +469,30 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Origen</div>
-      <div class="footer-tagline">Uncover your roots. Claim your heritage.</div>
-      <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:340px;">Professional genealogy research and heritage documentation services. Based in South Texas, serving clients worldwide.</p>
+      <div class="footer-tagline" data-es="Descubre tus raices. Reclama tu herencia.">Uncover your roots. Claim your heritage.</div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:340px;" data-es="Servicios profesionales de investigacion genealogica y documentacion de herencia. Con sede en el sur de Texas, sirviendo clientes en todo el mundo.">Professional genealogy research and heritage documentation services. Based in South Texas, serving clients worldwide.</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h4 data-es="Servicios">Services</h4>
       <ul class="footer-links">
-        <li><a href="#services">Full Genealogy</a></li>
-        <li><a href="#services">Document Preservation</a></li>
-        <li><a href="#services">Citizenship by Descent</a></li>
-        <li><a href="#services">Apostille Services</a></li>
+        <li><a href="#services" data-es="Genealogia Completa">Full Genealogy</a></li>
+        <li><a href="#services" data-es="Preservacion de Documentos">Document Preservation</a></li>
+        <li><a href="#services" data-es="Ciudadania por Descendencia">Citizenship by Descent</a></li>
+        <li><a href="#services" data-es="Servicios de Apostilla">Apostille Services</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
+      <h4 data-es="Compania">Company</h4>
       <ul class="footer-links">
-        <li><a href="#contact">Free Consultation</a></li>
-        <li><a href="#process">How It Works</a></li>
-        <li><a href="#countries">CBD Pathways</a></li>
+        <li><a href="#contact" data-es="Consulta Gratis">Free Consultation</a></li>
+        <li><a href="#process" data-es="Como Funciona">How It Works</a></li>
+        <li><a href="#countries" data-es="Rutas de Ciudadania">CBD Pathways</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Origen. All rights reserved.</span>
-    <div class="footer-disclaimer">Origen provides genealogical research and documentation services only. We are not a law firm and do not provide legal advice. For citizenship application filing, we coordinate with qualified immigration attorneys.</div>
+    <span>&copy; 2026 Origen. <span data-es="Todos los derechos reservados.">All rights reserved.</span></span>
+    <div class="footer-disclaimer" data-es="Origen proporciona servicios de investigacion genealogica y documentacion unicamente. No somos un bufete de abogados y no proporcionamos asesoramiento legal. Para la presentacion de solicitudes de ciudadania, coordinamos con abogados de inmigracion calificados.">Origen provides genealogical research and documentation services only. We are not a law firm and do not provide legal advice. For citizenship application filing, we coordinate with qualified immigration attorneys.</div>
   </div>
 </footer>
 
@@ -480,11 +500,72 @@ footer{background:var(--navy);color:rgba(255,255,255,0.4);padding:3.5rem 2rem 2r
 <div class="modal-overlay" id="modal" onclick="this.classList.remove('open')">
   <div style="background:var(--cream);border-radius:4px;padding:3rem;max-width:420px;text-align:center;margin:1rem;border-top:4px solid var(--gold);" onclick="event.stopPropagation()">
     <div style="font-size:3rem;margin-bottom:1rem;">&#x1F4DC;</div>
-    <h3 style="font-family:var(--font-display);font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;">Thank You</h3>
-    <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--sepia-dk);font-style:italic;margin-bottom:2rem;">Your consultation request has been received. We will be in touch within 24 hours to discuss your ancestry and next steps.</p>
-    <button onclick="document.getElementById('modal').classList.remove('open')" style="background:var(--navy);color:var(--white);border:none;padding:0.8rem 2rem;font-family:var(--font-body);font-weight:600;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;">Close</button>
+    <h3 style="font-family:var(--font-display);font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;" data-es="Gracias">Thank You</h3>
+    <p style="font-family:var(--font-body);font-size:0.92rem;color:var(--sepia-dk);font-style:italic;margin-bottom:2rem;" data-es="Tu solicitud de consulta ha sido recibida. Nos pondremos en contacto dentro de las proximas 24 horas para discutir tu ascendencia y los siguientes pasos.">Your consultation request has been received. We will be in touch within 24 hours to discuss your ancestry and next steps.</p>
+    <button onclick="document.getElementById('modal').classList.remove('open')" style="background:var(--navy);color:var(--white);border:none;padding:0.8rem 2rem;font-family:var(--font-body);font-weight:600;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;" data-es="Cerrar">Close</button>
   </div>
 </div>
+
+<script>
+(function() {
+  var lang = 'en';
+  var cache = [];
+
+  function init() {
+    document.querySelectorAll('[data-es]').forEach(function(el) {
+      cache.push({
+        el: el,
+        en: el.innerHTML,
+        es: el.getAttribute('data-es')
+      });
+    });
+    document.querySelectorAll('[data-es-placeholder]').forEach(function(el) {
+      cache.push({
+        el: el,
+        en: el.placeholder,
+        es: el.getAttribute('data-es-placeholder'),
+        attr: 'placeholder'
+      });
+    });
+    document.querySelectorAll('option[data-es]').forEach(function(el) {
+      if (!cache.find(function(c) { return c.el === el; })) {
+        cache.push({
+          el: el,
+          en: el.textContent,
+          es: el.getAttribute('data-es'),
+          attr: 'text'
+        });
+      }
+    });
+  }
+
+  window.toggleLang = function() {
+    lang = lang === 'en' ? 'es' : 'en';
+    document.documentElement.lang = lang;
+
+    document.getElementById('topEn').classList.toggle('active', lang === 'en');
+    document.getElementById('topEs').classList.toggle('active', lang === 'es');
+    document.getElementById('navEn').classList.toggle('active', lang === 'en');
+    document.getElementById('navEs').classList.toggle('active', lang === 'es');
+
+    cache.forEach(function(item) {
+      if (item.attr === 'placeholder') {
+        item.el.placeholder = lang === 'en' ? item.en : item.es;
+      } else if (item.attr === 'text') {
+        item.el.textContent = lang === 'en' ? item.en : item.es;
+      } else {
+        item.el.innerHTML = lang === 'en' ? item.en : item.es;
+      }
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 </body>
 </html>
